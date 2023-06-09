@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ingreso_material', function (Blueprint $table) {
+        Schema::create('ingreso', function (Blueprint $table) {
             $table->id();
             $table->integer('cantidad');
             $table->date('fecha_ingreso');
-            $table->string('responsable');
+            $table->string('proveedor');
             $table->unsignedBigInteger('material_id');
             $table->foreign('material_id')->references('id')->on('material');
             $table->unsignedBigInteger('usuario_id');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ingreso_material');
+        Schema::dropIfExists('ingreso');
     }
 };

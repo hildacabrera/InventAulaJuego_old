@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('prestamo', function (Blueprint $table) {
             $table->id();
-            $table->integer('cant_prestamo');
-            $table->date('fecha_pres');
-            $table->date('fecha_dev');
+            $table->integer('cantidad');
+            $table->date('fecha_prestamo');
+            $table->date('fecha_devolucion');
             $table->string('descripcion');
             $table->unsignedBigInteger('material_id');
-            $table->foreign('material_id')->references('id')->on('material');            
+            $table->foreign('material_id')->references('id')->on('material');
             $table->unsignedBigInteger('usuario_id');
             $table->foreign('usuario_id')->references('id')->on('usuario');
+            $table->unsignedBigInteger('gestor_id');
+            $table->foreign('gestor_id')->references('id')->on('gestor');
             $table->timestamps();
         });
     }
