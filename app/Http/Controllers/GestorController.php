@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\Gestor;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+
 //use App\Http\Controllers\Controller;
 
-class UsuarioController extends Controller
+class GestorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-       return view('Usuarios.Index',[
-            'usuario'=>Usuario::all()
+       return view('Gestores.Index',[
+            'gestor'=>Gestor::all()
             
         ]);
         
@@ -25,7 +26,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('Usuarios.create');
+        return view('Gestores.create');
     }
 
     /**
@@ -33,14 +34,14 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $usuario = new Usuario();
-        $usuario->nombre =$request->get('nombre');
-        $usuario->email =$request->get('email');
-        $usuario->telefono =$request->get('telefono');
-        $usuario->direccion =$request->get('direccion');
-        $usuario->save();
+        $gestor = new Gestor();
+        $gestor->nombre =$request->get('nombre');
+        $gestor->apellido =$request->get('apellido');
+        $gestor->email =$request->get('email');
+        $gestor->contraseña =$request->get('contraseña');
+        $gestor->save();
  
-        return redirect('/Usuarios');
+        return redirect('/Gestores');
     }
 
     /**
@@ -56,7 +57,7 @@ class UsuarioController extends Controller
      */
     public function edit(string $id)
     {
-        return view('Usuarios.edit',['usuario'=>Usuario::find($id)]);
+        return view('Gestores.edit',['gestor'=>Gestor::find($id)]);
     }
 
     /**
@@ -64,13 +65,14 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $usuario = Usuario::find($id);       
-        $usuario->nombre =$request->get('nombre');
-        $usuario->email =$request->get('email');
-        $usuario->telefono =$request->get('telefono');
-        $usuario->direccion =$request->get('direccion');
+        $gestor = Gestor::find($id);       
+        $gestor->nombre =$request->get('nombre');
+        $gestor->apellido =$request->get('apellido');
+        $gestor->email =$request->get('email');
+        $gestor->contraseña =$request->get('contraseña');
+      
 
-        return redirect('/Usuarios');
+        return redirect('/Gestores');
     }
 
     /**
@@ -79,16 +81,16 @@ class UsuarioController extends Controller
     
     public function confirmDelete(string $id)
     {
-     return view('Usuarios.confirmDelete',
-     ['usuario'=>Usuario::find($id)
+     return view('Gestores.confirmDelete',
+     ['gestor'=>Gestor::find($id)
     ]);
     }
      public function destroy(string $id)
     {
        
-    $usuario = Usuario::find($id);
+    $usuario = Gestor::find($id);
     $usuario->delete();
-    return redirect('/Usuarios');
+    return redirect('/Gestores');
     }
 }
   

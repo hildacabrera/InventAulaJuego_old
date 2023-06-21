@@ -3,23 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Tipo_Material;
+use App\Models\Material;
 class MaterialController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+{
+    return view('Materiales.index', [
+        'material' => Material::select('material.*', 'tipo_material.nombre as tipo_material_nombre')
+            ->join('tipo_material', 'material.tipo_material_id', '=', 'tipo_material.id')
+            ->get()
+    ]);
+}
+        
+        
     public function create()
     {
-        //
+        return view('Materiales.create',['tipo_material'=>Tipo_Material::all()]);
     }
 
     /**
@@ -27,7 +28,13 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $material = new Material ();
+        $material->nombre =$request->get('nombre');
+        $material->descripcion =$request->get('descripcion');
+        $material->tipo_material_id =$request->get('tipo_material_id');
+        $material->save();
+ 
+        return redirect('/Materiales');
     }
 
     /**
@@ -43,7 +50,7 @@ class MaterialController extends Controller
      */
     public function edit(string $id)
     {
-        //
+       return view('Materiales.edit',['material'=>Material::find($id),'tipo_material'=>Tipo_Material::all()]);
     }
 
     /**
@@ -51,14 +58,29 @@ class MaterialController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $material = Material::find($id);
+        $material->nombre =$request->get('nombre');
+        $material->descripcion =$request->get('descripcion');
+        $material->tipo_material_id =$request->get('tipo_material_id');
+        $material->save();
+
+        return redirect('/Materiales');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    
+    public function confirmDelete(string $id)
     {
-        //
+     return view('Materiales.confirmDelete',['material'=>Material::find($id)]);
+    }
+    
+    
+     public function destroy(string $id)
+    {
+        $material = Material::find($id);
+     $material->delete();
+        return redirect('/Materiales');
     }
 }
