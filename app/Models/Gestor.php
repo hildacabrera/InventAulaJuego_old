@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class IngresoMaterial extends Model
+class Gestor extends Model
 {
     use HasFactory;
-
-    protected $table = 'ingreso';
+    protected $table = 'gestor';
     public $timestamps =false;
     protected $primaryKey = 'id';
 }
