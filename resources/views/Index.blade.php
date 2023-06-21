@@ -1,22 +1,12 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-
 @extends('layouts.base')
 @section('content')
-       
-
-            
+           
             <div id="white" class="col-1">
             </div>
         <div class="row">
         <div class="col-sm-1">
   </div>
             <div id = "white" class="col-5" >
-                <br>
 
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                   <ol class="carousel-indicators">
@@ -26,13 +16,13 @@
                   </ol>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <img src="https://www.iudigital.edu.co/IU-Digital-Abierta/PublishingImages/17092021_IUDigital_Abierta_600x500.png" class="d-block w-100" alt="Imagen 1">
+                      <img src="https://www.iudigital.edu.co/Centro-de-Recursos-para-el-Aprendizaje-y-la-Investigacion-CRAI/PublishingImages/Micrositio/Carousel/25112021_carrusel_crai_1.jpg" class="d-block w-100" alt="Imagen 1">
                     </div>
                     <div class="carousel-item">
-                      <img src="https://i.ytimg.com/vi/zNvQ1KnhbjY/maxresdefault.jpg" class="d-block w-100" alt="Imagen 2">
+                      <img src="https://www.iudigital.edu.co/CRAI/SliderHomeCrai/buscar%20en%20BD.png" class="d-block w-100" alt="Imagen 2">
                     </div>
                     <div class="carousel-item">
-                      <img src="https://i.ytimg.com/vi/ZPUh1KX1NXk/maxresdefault.jpg" class="d-block w-100" alt="Imagen 3">
+                      <img src="https://www.iudigital.edu.co/Centro-de-Recursos-para-el-Aprendizaje-y-la-Investigacion-CRAI/PublishingImages/Micrositio/Carousel/4.4.png" class="d-block w-100" alt="Imagen 3">
                     </div>
                   </div>
                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -47,117 +37,61 @@
                 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<br>
 
+                <div class="row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Bases de Datos Multidisciplinarias</h5>
+                        <p class="card-text">EBSCO Open Dissertations: EBSCO Open Dissertations incluye el contenido de American Doctoral Dissertations, la cual es una base de datos gratuita con registros de más de 1.2 millones de tesis y disertaciones electrónicas de todo el mundo.</p>
+                        <a href="EBSCO Open Dissertations: EBSCO Open Dissertations incluye el contenido de American Doctoral Dissertations, la cual es una base de datos gratuita con registros de más de 1.2 millones de tesis y disertaciones electrónicas de todo el mundo." class="btn btn-primary">Ver más</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Recursos educativos digitales e interactivos</h5>
+                        <p class="card-text">Transmedialiteracy: Educación y tecnologías de la información</p>
+                        <a href="https://transmedialiteracy.org/" class="btn btn-primary">Ver más</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
             </div>
             
             <div id="white" class="col-1">
             </div>
-            <div id="white" class="col-4">
-                
-              <div class="container">
-                <div class="row">
-            
-                  <!-- Tarjeta 1 -->
-                  <div class="col-sm-6 col-md-6">
-                    <div class="card">
-                      <img src="https://pequenosplanes.com/wp-content/uploads/2017/05/IMG_20170523_171538.jpg" class="card-img-top" alt="Imagen 1">
-                      <div class="card-body">
-                        <h5 class="card-title">Bloques Lógicos</h5>
-                      </div>
-                    </div>
-                  </div>
-            
-                  <!-- Tarjeta 2 -->
-                  <div class="col-sm-6 col-md-6">
-                    <div class="card">
-                      <img src="https://cdn-gacmo.nitrocdn.com/sSOLxWvOlYaiqbbjsnRQuNEmMrtIasaC/assets/images/optimized/rev-57ec7fb/wp-content/uploads/2018/08/sudoku_multicolor.jpg" class="card-img-top" alt="Imagen 2">
-                      <div class="card-body">
-                        <h5 class="card-title">Sudoku</h5>
-      
-                      </div>
-                    </div>
-                  </div>
-            
-                  <!-- Tarjeta 3 -->
-                  <div class="col-sm-6 col-md-6">
-                    <div class="card">
-                      <img src="https://cdn-gacmo.nitrocdn.com/sSOLxWvOlYaiqbbjsnRQuNEmMrtIasaC/assets/images/optimized/rev-57ec7fb/wp-content/uploads/2018/08/goula_tangram.jpg" class="card-img-top" alt="Imagen 3">
-                      <div class="card-body">
-                        <h5 class="card-title">Tangram</h5>
-                      </div>             
-                    </div>
-                  </div>
-
-                  <!-- Tarjeta 3 -->
-                  <div class="col-sm-6 col-md-6">
-                    <div class="card">
-                      <img src="https://cdn-gacmo.nitrocdn.com/sSOLxWvOlYaiqbbjsnRQuNEmMrtIasaC/assets/images/optimized/rev-57ec7fb/wp-content/uploads/2018/08/rompecabezas_matematico.jpg" class="card-img-top" alt="Imagen 3">
-                      <div class="card-body">
-                        <h5 class="card-title">Rompecabezas</h5>
-                      </div>             
-                    </div>
-                  </div>
-                        
+            <br>
+            <div id="white" class="col-5">
+              <div class="card" style="width: 20rem;">
+                <img src="https://www.iudigital.edu.co/CRAI/SliderHomeCrai/nuevos%20libros.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Acerca del Aula del Juego</h5>
+                  <p class="card-text">Sisema de Inventarios que permite la administración de Alula del Juego</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Materiales</li>
+                  <li class="list-group-item">Cursos</li>
+                  <li class="list-group-item">Talleres</li>
+                </ul>
+                <div class="card-body">
+                  <a href="https://www.iudigital.edu.co/CRAI/Paginas/default.aspx" class="card-link">CRAI</a>
+                  <a href="https://www.iudigital.edu.co/CRAI/Paginas/default.aspx" class="card-link">Bases de Datos</a>
                 </div>
               </div>
             </div>
+        </div>
+        
+        <div>
+
+        </div>
+            <div id="white" class="col-3">
+            </div>
             <div id= "white"class="col-1">
             </div>
-                <footer class="bg-light text-center text-white">
 
-                    <!-- Grid container -->
-                    <div style="">
-                    <div class="container p-4 pb-0" >
-                      <!-- Section: Social media -->
-                      <section class="mb-4">
-                        <!-- Facebook -->
-                        <a
-                          class="btn text-white btn-floating m-1"
-                          style="background-color: #3b5998;"
-                          href="https://www.facebook.com/soyiudigital"
-                          role="button"
-                          ><i class="fab fa-facebook-f"></i
-                        ></a>
-                  
-                        <!-- Twitter -->
-                        <a
-                          class="btn text-white btn-floating m-1"
-                          style="background-color: #55acee;"
-                          href="https://twitter.com/IUDIGITAL"
-                          role="button"
-                          ><i class="fab fa-twitter"></i
-                        ></a>
-                  
-                        <!-- Google -->
-                        <a
-                          class="btn text-white btn-floating m-1"
-                          style="background-color: #dd4b39;"
-                          href="https://www.linkedin.com/company/unavailable/"
-                          role="button"
-                          ><i class="fab fa-google"></i
-                        ></a>
-                  
-                        <!-- Instagram -->
-                        <a
-                          class="btn text-white btn-floating m-1"
-                          style="background-color: #ac2bac;"
-                          href="https://www.instagram.com/iudigital/"
-                          role="button"
-                          ><i class="fab fa-instagram"></i
-                        ></a>
-                  
-                        <!-- Linkedin -->
-                      </section>
-                      <!-- Section: Social media -->
-                    </div>
-                        <!-- Grid container -->
-                    
-                        <!-- Copyright -->
-                    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                      © 2020 Copyright:
-                      <a class="text-white" href="https://www.iudigital.edu.co/Paginas/default.aspx">IUDigital de Antioquia</a>
-                    </div>
-                    <!-- Copyright -->
-                  </footer>
 
  @endsection('content')

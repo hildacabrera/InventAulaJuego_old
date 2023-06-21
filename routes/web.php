@@ -42,4 +42,4 @@ Route::get('/Gestores/{id}/confirmDelete',[GestorController::class,'confirmDelet
 
 Route::resource('/Usuarios', UsuarioController::class);
 Route::get('/index', [UsuarioController::class, 'index'])->name('Usuarios.index');
-Route::get('/index', [IndexController::class, 'index'])->name('index.index');
+Route::get('/', [IndexController::class, 'index'])->name('index.index');
