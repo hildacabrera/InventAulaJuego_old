@@ -23,7 +23,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+        <a class="nav-link" href="{{url('/')}}">Inicio</a>
         <a class="nav-link" href="{{url('Materiales')}}">Materiales</a>
         <a class="nav-link" href="{{url('Tipo_Materiales')}}">Tipo Material</a>
         <a class="nav-link" href="{{url('Ingresos')}}">Ingresos</a>
