@@ -25,7 +25,7 @@ class PrestamoController extends Controller
             'ListaUsuarios' => Usuario::all(),
             'ListaMaterial' => Material::all(),
             'ListaMaterialesStock' => IngresoMaterial::join('material', 'material.id', '=', 'ingreso.material_id')
-            ->select('material.id','material.nombre', 'ingreso.fecha_ingreso', 'ingreso.cantidad')
+            ->select('ingreso.id','material.nombre', 'ingreso.fecha_ingreso', 'ingreso.cantidad')
             ->where('material.id', '0')
             ->get(),
             'ValorUsuario' => 0,
@@ -55,9 +55,9 @@ class PrestamoController extends Controller
             $prestamo->cantidad = 0;
             $prestamo->save();
 
-            $ingreso = IngresoMaterial::find($prestamo->material_id);
-            $ingreso->cantidad = $ingreso->cantidad + 1;
-            $ingreso->save();
+            $ingreso = IngresoMaterial::where('ingreso.material_id', $prestamo->material_id)->get();
+            $ingreso[0]->cantidad = $ingreso[0]->cantidad + 1;
+            $ingreso[0]->save();
         }
         else if ($accionId === 'Prestar') {
             $prestamoCantidad = IngresoMaterial::find((int)$prestarId);
@@ -83,7 +83,7 @@ class PrestamoController extends Controller
             'ListaUsuarios' => Usuario::all(),
             'ListaMaterial' => Material::all(),
             'ListaMaterialesStock' => IngresoMaterial::join('material', 'material.id', '=', 'ingreso.material_id')
-            ->select('material.id','material.nombre', 'ingreso.fecha_ingreso', 'ingreso.cantidad')
+            ->select('ingreso.id','material.nombre', 'ingreso.fecha_ingreso', 'ingreso.cantidad')
             ->where('material.id', $materialId)
             ->where('ingreso.cantidad', '>', 0)
             ->get(),

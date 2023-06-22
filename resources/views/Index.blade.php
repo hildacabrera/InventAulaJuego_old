@@ -16,13 +16,13 @@
                   </ol>
                   <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <img src="" class="d-block w-100" alt="Imagen 1">
+                      <img src="https://staticprd.minuto30.com/wp-content/uploads/2020/08/IU-Digital-de-Antioquia.jpeg" class="d-block w-100" alt="Imagen 1">
                     </div>
                     <div class="carousel-item">
-                      <img src="https://www.iudigital.edu.co/CRAI/SliderHomeCrai/buscar%20en%20BD.png" class="d-block w-100" alt="Imagen 2">
+                      <img src="https://vivirenelpoblado.com/wp-content/uploads/2023/05/Mineducacion-se-comprometio-con-ampliar-la-base-presupuestal-para-la-IUDigital-de-Antioquia-1-696x391.jpg" class="d-block w-100" alt="Imagen 2">
                     </div>
                     <div class="carousel-item">
-                      <img src="https://www.iudigital.edu.co/Centro-de-Recursos-para-el-Aprendizaje-y-la-Investigacion-CRAI/PublishingImages/Micrositio/Carousel/4.4.png" class="d-block w-100" alt="Imagen 3">
+                      <img src="https://reea.com.co/wp-content/uploads/2021/10/MQYRVBHMXZGWXG32CFGRWH4E4Q.jpeg" class="d-block w-100" alt="Imagen 3">
                     </div>
                   </div>
                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -67,10 +67,10 @@
             <br>
             <div id="white" class="col-5">
               <div class="card" style="width: 20rem;">
-                <img src="https://www.iudigital.edu.co/CRAI/SliderHomeCrai/nuevos%20libros.png" class="card-img-top" alt="...">
+                <img src="https://pbs.twimg.com/media/Fwl0X1KXoAITJ-t?format=jpg&name=large" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Acerca del Aula del Juego</h5>
-                  <p class="card-text">Sisema de Inventarios que permite la administración de Alula del Juego</p>
+                  <p class="card-text">Sisema de Inventarios que permite la administración y el control de materiales didacticos de Alula del Juego</p>
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">Materiales</li>
