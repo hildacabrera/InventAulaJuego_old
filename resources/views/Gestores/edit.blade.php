@@ -1,7 +1,7 @@
 @extends('layouts.base')
 @section ('content')
 
-  <form action="/Gestores" method="POST">
+  <form action="/Gestores/{{$gestor->id}}" method="POST">
     @csrf
     @method('put')
     <div class="container mt-3">
@@ -37,4 +37,3 @@
 
 
 @endsection
-

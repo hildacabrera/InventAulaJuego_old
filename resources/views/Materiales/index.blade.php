@@ -27,7 +27,7 @@
 <td>{{ $material->id }}</td>
 <td>{{ $material->nombre }}</td>
 <td>{{ $material->descripcion }}</td>
-<td>{{ $material->tipo_material}}</td>
+<td>{{ $material->tipo_material_nombre}}</td>
 <td><a class="btn btn-primary" href="/Materiales/{{$material->id}}/edit"><small>Modificar</small></a>
   <a class="btn btn-danger" href="/Materiales/{{$material->id}}/confirmDelete"><small>Eliminar</small></a></td>
 </tr>

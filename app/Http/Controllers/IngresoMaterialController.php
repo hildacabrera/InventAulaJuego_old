@@ -15,22 +15,19 @@ class IngresoMaterialController extends Controller
 
 public function index()
 {
-    return view('Ingresos.index', [
-        'ingresomaterial' => IngresoMaterial::select('ingreso.*', 'material.nombre as material_nombre')
-            ->join('material', 'ingreso.material_id', '=', 'material.id')
-            ->get()
-        //'usuario' => IngresoMaterial::select('ingreso.*', 'usuario.nombre as usuario_nombre')
-            //->join('usuario', 'ingreso.usuario_id', '=', 'usuario.id')
-           // ->get()
+    return view('Ingresos.index',[
+        'ingreso'=>IngresoMaterial::select('ingreso.*','usuario.nombre as nombre_usuario','material.nombre as nombre_material')
+        ->join('usuario','ingreso.usuario_id', '=','usuario.id')
+        ->join('material','ingreso.material_id', '=','material.id')
+        ->orderBy('id', 'asc')
+        ->get()
     ]);
 }
         
         
     public function create()
     {
-       // return view('Ingresos.create',['material'=>Material::all()]);
-
-        //return view('Ingresos.create',['usuario'=>Usuario::all()]);
+        return view('Ingresos.create',['usuario'=>Usuario::all()],['material'=>Material::all()]);
     }
 
     /**
@@ -38,13 +35,15 @@ public function index()
      */
     public function store(Request $request)
     {
-        //$ejemplar = new IngresoMaterial ();
-        //$ejemplar->localizacion =$request->get('localizacion');
-        //$ejemplar->cantidad =$request->get('cantidad');
-       // $ejemplar->codigoLibro =$request->get('codigoLibro');
-        //$ejemplar->save();
+        $ingreso = new IngresoMaterial();
+        $ingreso->cantidad =$request->get('cantidad');
+        $ingreso->fecha_ingreso =$request->get('fecha_ingreso');
+        $ingreso->proveedor =$request->get('proveedor');
+        $ingreso->usuario_id =$request->get('usuario_id');
+        $ingreso->material_id =$request->get('material_id');
+        $ingreso->save();
  
-        //return redirect('/Ingreso');
+        return redirect('/Ingresos');
     }
 
     /**
@@ -60,7 +59,7 @@ public function index()
      */
     public function edit(string $id)
     {
-      // return view('Ingreso.edit',['ejemplar'=>IngresoMaterial::find($id),'libro'=>Libro::all()]);
+        return view('Ingresos.edit',['ingreso'=>IngresoMaterial::find($id),'usuario'=>Usuario::all()],['material'=>Material::all()]);
     }
 
     /**
@@ -68,13 +67,15 @@ public function index()
      */
     public function update(Request $request, string $id)
     {
-       // $ejemplar = IngresoMaterial::find($id);
-       // $ejemplar->localizacion =$request->get('localizacion');
-       // $ejemplar->cantidad =$request->get('cantidad');
-       // $ejemplar->codigoLibro =$request->get('codigoLibro');
-       // $ejemplar->save();
-
-        //return redirect('/Ingreso');
+        $ingreso = IngresoMaterial::find($id);
+        $ingreso->cantidad =$request->get('cantidad');
+        $ingreso->fecha_ingreso =$request->get('fecha_ingreso');
+        $ingreso->proveedor =$request->get('proveedor');
+        $ingreso->usuario_id =$request->get('usuario_id');
+        $ingreso->material_id =$request->get('material_id');
+        $ingreso->save();
+ 
+        return redirect('/Ingresos');
     }
 
     /**
@@ -83,14 +84,14 @@ public function index()
     
     public function confirmDelete(string $id)
     {
-     //return view('Ingreso.confirmDelete',['ejemplar'=>IngresoMaterial::find($id)]);
+        return view('Ingresos.confirmDelete',['ingreso'=>IngresoMaterial::find($id)]);
     }
     
     
      public function destroy(string $id)
     {
-        //$ejemplar = IngresoMaterial::find($id);
-     //$ejemplar->delete();
-        //return redirect('/Ingreso');
+        $ingreso = IngresoMaterial::find($id);
+        $ingreso->delete();
+        return redirect('/Ingresos');
     }
 }

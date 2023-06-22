@@ -30,8 +30,9 @@
 <td>{{ $ingreso->cantidad }}</td>
 <td>{{ $ingreso->fecha_ingreso }}</td>
 <td>{{ $ingreso->proveedor }}</td>
-<td>{{ $ingreso->material_id}}</td>
-<td>{{ $ingreso->usuario_id}}</td>
+<td>{{ $ingreso->nombre_material}}</td>
+<td>{{ $ingreso->nombre_usuario}}</td>
+
 <td><a class="btn btn-primary" href="/Ingresos/{{$ingreso->id}}/edit"><small>Modificar</small></a>
   <a class="btn btn-danger" href="/Ingresos/{{$ingreso->id}}/confirmDelete"><small>Eliminar</small></a></td>
 </tr>

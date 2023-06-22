@@ -16,7 +16,7 @@
 
           <div class="form-group col-6">
             <label for="fecha_ingreso">Fecha de Ingreso:</label>
-            <input type="text" class="form-control" id="fecha_ingreso" name="fecha_ingreso">
+            <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso">
           </div>
 
 
@@ -60,8 +60,6 @@
 
 
 @endsection
-
-
 
 
 
