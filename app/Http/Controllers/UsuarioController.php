@@ -57,6 +57,7 @@ class UsuarioController extends Controller
     public function edit(string $id)
     {
         return view('Usuarios.edit',['usuario'=>Usuario::find($id)]);
+        
     }
 
     /**
@@ -69,6 +70,7 @@ class UsuarioController extends Controller
         $usuario->email =$request->get('email');
         $usuario->telefono =$request->get('telefono');
         $usuario->direccion =$request->get('direccion');
+        $usuario->save();
 
         return redirect('/Usuarios');
     }

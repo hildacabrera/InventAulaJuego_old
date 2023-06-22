@@ -1,7 +1,8 @@
 @extends('layouts.base')
 @section ('content')
 
-  <form action="/Usuarios" method="POST">
+  {{-- <form action="/Usuarios" method="POST"> --}}
+    <form action="/Usuarios/{{$usuario->id}}"method="POST">
     @csrf
     @method('put')
     <div class="container mt-3">
