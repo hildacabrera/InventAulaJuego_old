@@ -29,7 +29,7 @@
         <a class="nav-link" href="{{url('Ingresos')}}">Ingresos</a>
         <a class="nav-link" href="{{url('Usuarios')}}">Usuarios</a>
         <a class="nav-link" href="{{url('Gestores')}}">Gestores</a>
-        <a class="nav-link" href="#">Préstamos</a>   
+        <a class="nav-link" href="{{url('Prestamos')}}">Préstamos</a>   
   <br>
       </div>
     </div>

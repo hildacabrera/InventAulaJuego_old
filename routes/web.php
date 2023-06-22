@@ -7,6 +7,7 @@ use App\Http\Controllers\Tipo_MaterialController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\IngresoMaterialController;
 use App\Http\Controllers\GestorController;
+use App\Http\Controllers\PrestamoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,8 @@ Route::get('/', function () {
 
 
 Route::get('/Usuarios/{id}/confirmDelete',[UsuarioController::class,'confirmDelete']);
-
+Route::post('/Prestamos', [PrestamoController::class, 'consultarPrestamos'])->name('consultarPrestamos');
+Route::get('/Prestamos', [PrestamoController::class, 'index'])->name('prestamos.index');
 Route::resource('/Tipo_Materiales', Tipo_MaterialController::class);
 Route::get('/Tipo_Materiales/{id}/confirmDelete',[Tipo_MaterialController::class,'confirmDelete']);
 
@@ -43,3 +45,5 @@ Route::get('/Gestores/{id}/confirmDelete',[GestorController::class,'confirmDelet
 Route::resource('/Usuarios', UsuarioController::class);
 Route::get('/index', [UsuarioController::class, 'index'])->name('Usuarios.index');
 Route::get('/', [IndexController::class, 'index'])->name('index.index');
+
+Route::post('/Prestamos', [PrestamoController::class, 'consultarPrestamos'])->name('consultarPrestamos');
