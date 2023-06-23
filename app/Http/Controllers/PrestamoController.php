@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gestor;
 use App\Models\IngresoMaterial;
 use App\Models\Material;
 use App\Models\Prestamo;
@@ -64,6 +65,7 @@ class PrestamoController extends Controller
             $prestamoCantidad->cantidad = $prestamoCantidad->cantidad - 1;
             $prestamoCantidad->save();
 
+            $gestores = Gestor::all();
             $prestamos = new Prestamo ();
             $prestamos->cantidad = 1;
             $prestamos->fecha_prestamo =$fechaActual;
@@ -71,7 +73,7 @@ class PrestamoController extends Controller
             $prestamos->descripcion = 'prestar';
             $prestamos->material_id = $prestamoCantidad -> material_id;
             $prestamos->usuario_id = $usuarioId;
-            $prestamos->gestor_id = 1;
+            $prestamos->gestor_id = $gestores[0]->id;
             $prestamos->save();
         }
         $superPantalla = [
