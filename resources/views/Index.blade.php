@@ -1,8 +1,7 @@
 @extends('layouts.base')
 @section('content')
            
-            <div id="white" class="col-1">
-            </div>
+    
         <div class="row">
         <div class="col-sm-1">
   </div>
@@ -59,14 +58,13 @@
                     </div>
                   </div>
                 </div>
-                
             </div>
             
             <div id="white" class="col-1">
             </div>
             <br>
             <div id="white" class="col-5">
-              <div class="card" style="width: 20rem;">
+              <div class="card" style="width: 25rem;">
                 <img src="{{ asset('Imagenes/Imagen3.jpeg') }}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Acerca del Aula del Juego</h5>
@@ -82,16 +80,16 @@
                   <a href="https://www.iudigital.edu.co/CRAI/Paginas/default.aspx" class="card-link">Bases de Datos</a>
                 </div>
               </div>
+
             </div>
         </div>
-        
         <div>
 
         </div>
-            <div id="white" class="col-3">
-            </div>
+    
+            {{-- </div>
             <div id= "white"class="col-1">
-            </div>
+            </div> --}}
 
 
  @endsection('content')

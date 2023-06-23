@@ -2,10 +2,10 @@
 @section('content')
 
 
-<table class="table table-striped">
+<table class="table table-striped" class="container mt-4">
     <thead>
 <tr>
-  <th colspan="12"> 
+  <th colspan="9"> 
  <a class="btn btn-primary" href="/Materiales/create">Agregar Material</a>
     </th>
 
