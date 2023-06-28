@@ -36,7 +36,7 @@
   </div>
   
 </nav>
-<center><H2>AULA DEL JUEGO</H2><h5>Inventario</h5></center> 
+<center><H2>SIAJ</H2><h5>Sistema de Inventario Aula del Juego</h5></center> 
 <div class="container-fluid"><hr>
 
 
