@@ -9,11 +9,75 @@
   <title>Lista de Préstamo Personal</title>
 </head>
 <body>
+
+<form id = "formPrestamo" ="{{ route('consultarPrestamos') }}" method="POST">
+        @csrf
+  <div class="container col-12">
+    <div id="dropdown" >
+        <h5>Buscar Préstamos por Gestor</h5>
+        <select name="persona" class="form-control" onchange="this.form.submit()">
+            <option value="">Selecciona un Gestor</option>
+            @foreach($superPantalla['ListaUsuarios'] as $usuario)
+                <option value="{{ $usuario->id }}" @if($usuario->id == $superPantalla['ValorUsuario']) selected @endif>{{ $usuario->nombre }}</option>
+            @endforeach
+        </select>
+        <br>
+    </div>
+    </form>
+    <div id="grillaPrestamo">
+    <table class="table table-striped" style="width: 100%; margin: 0px auto; text-align: center">
+      <thead>
+          <tr>
+              <td>
+                  <b>Material</b> 
+              </td>
+              <td>
+                  <b>Descripción</b> 
+              </td>
+              <td>
+                <b>Cantidad</b> 
+            </td> 
+              <td>
+                  <b>Fecha Préstamo</b> 
+              </td> 
+              <td>
+                  <b>Acción</b> 
+              </td> 
+          </tr>
+      </thead>
+  <tbody>
+    @if(count($superPantalla['ListaPrestamoPersonal']) > 0)
+      @foreach ($superPantalla['ListaPrestamoPersonal'] as $item)
+      <tr>
+          <td>
+              {{ $item->nombre }}
+          </td>
+          <td>
+              {{ $item->descripcion }}
+          </td>
+          <td>
+              {{ $item->cantidad }}
+          </td>
+          <td>
+              {{ $item->fecha_prestamo}}
+          </td>
+          
+          <td>
+            <a onclick="submitFormDevolver(event, {{ $item->id }})" class="btn btn-warning"><small>Devolver</small></a>
+          </td>
+       
+      @endforeach
+      @endif
+  
+  </tbody>
+  </table>
+</div>
+
     <form id = "formPrestamo" ="{{ route('consultarPrestamos') }}" method="POST">
         @csrf
   <div class="container col-12">
     <div id="dropdown" >
-        <h5>Buscar Prestamos por Usuario</h5>
+        <h5>Buscar Préstamos por Usuario</h5>
         <select name="persona" class="form-control" onchange="this.form.submit()">
             <option value="">Selecciona un usuario</option>
             @foreach($superPantalla['ListaUsuarios'] as $usuario)
@@ -37,10 +101,10 @@
                 <b>Cantidad</b> 
             </td> 
               <td>
-                  <b>Fecha Prestamo</b> 
+                  <b>Fecha Préstamo</b> 
               </td> 
               <td>
-                  <b>Accion</b> 
+                  <b>Acción</b> 
               </td> 
           </tr>
       </thead>
@@ -101,7 +165,7 @@
               <b>Cantidad</b> 
           </td>
           <td>
-              <b>Accion</b> 
+              <b>Acción</b> 
           </td> 
       </tr>
   </thead>
@@ -130,6 +194,7 @@
 </tbody>
 </table>
 </div> 
+
 <input name = "idDevolver" type="hidden" />
 <input name = "idPrestar" type="hidden"/>
 <input name = "idAccion" type="hidden"/>

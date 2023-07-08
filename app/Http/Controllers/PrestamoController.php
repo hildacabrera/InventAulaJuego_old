@@ -25,12 +25,14 @@ class PrestamoController extends Controller
             ->get(),
             'ListaUsuarios' => Usuario::all(),
             'ListaMaterial' => Material::all(),
+            'ListaGestores' => Gestor::all(),
             'ListaMaterialesStock' => IngresoMaterial::join('material', 'material.id', '=', 'ingreso.material_id')
             ->select('ingreso.id','material.nombre', 'ingreso.fecha_ingreso', 'ingreso.cantidad')
             ->where('material.id', '0')
             ->get(),
             'ValorUsuario' => 0,
-            'ValorMaterial' => 0
+            'ValorMaterial' => 0,
+            'ValorGestor' => 0
                 ];
             
   

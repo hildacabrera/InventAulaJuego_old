@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gestor;
+use App\Models\Prestamo;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 //use App\Http\Controllers\Controller;
 
@@ -16,7 +18,8 @@ class GestorController extends Controller
     public function index()
     {
        return view('Gestores.Index',[
-            'gestor'=>Gestor::all()
+            'gestor'=>Gestor::all() ,
+            'error' => session('error')
             
         ]);
         
@@ -26,7 +29,9 @@ class GestorController extends Controller
      */
     public function create()
     {
-        return view('Gestores.create');
+        return view('Gestores.create',[
+            'errors' => session('errors')
+        ]);
     }
 
     /**
@@ -34,6 +39,15 @@ class GestorController extends Controller
      */
     public function store(Request $request)
     {
+         $validator = Validator::make($request->all(), [
+          'nombre' => 'required|max:20|','apellido' => 'required|max:20|', 'email' => 'required|max:20|', 'contraseña' => 'required|min:12|',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect('Gestores/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
         $gestor = new Gestor();
         $gestor->nombre =$request->get('nombre');
         $gestor->apellido =$request->get('apellido');
@@ -88,9 +102,21 @@ class GestorController extends Controller
      public function destroy(string $id)
     {
        
-    $usuario = Gestor::find($id);
-    $usuario->delete();
+    $gestor = Gestor::find($id);
+    
+    $prestamo = Prestamo::select('*')
+        ->where('gestor_id', $id)
+        ->get();
+
+        if ($prestamo->count() > 0) {
+            
+            return redirect()->action([self::class, 'index'])->with('error', 'No puedes eliminar un gestor, en prestamos esta asociado en el sistema.');
+        } else {
+    
+    
+    $gestor->delete();
     return redirect('/Gestores');
     }
+}
 }
   

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Material;
 
+use Illuminate\Http\Request;
 use App\Models\Tipo_Material;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class Tipo_MaterialController extends Controller
 
@@ -20,13 +22,15 @@ class Tipo_MaterialController extends Controller
     {
         
         return view('Tipo_Materiales.index',[
-            'tipo_material'=>Tipo_Material::all()
+            'tipo_material'=>Tipo_Material::all(), 'error' => session('error')
             
         ]);
     }
     public function create()
     {
-         return view('Tipo_Materiales.create');
+         return view('Tipo_Materiales.create', [
+            'errors' => session('errors')
+        ]);
          
     }
 
@@ -35,6 +39,15 @@ class Tipo_MaterialController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+          'nombre' => 'required|max:50|',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect('Tipo_Materiales/create')
+                        ->withErrors($validator)
+                        ->withInput();
+             }            
         $tipo_material = new Tipo_Material ();
         $tipo_material->nombre =$request->get('nombre');
                 $tipo_material->save();
@@ -84,10 +97,18 @@ class Tipo_MaterialController extends Controller
     public function destroy(string $id)
     {
     $tipo_material = Tipo_Material::find($id);
-    $tipo_material->delete();
+     $material = Material::select('*')
+        ->where('tipo_material_id', $id)
+        ->get();
 
-     
-    return redirect('/Tipo_Materiales');
+        if ($material->count() > 0) {
+            
+            return redirect()->action([self::class, 'index'])->with('error', 'No puedes eliminar un tipo de material, tienes materiales asociados en el sistema.');
+        } else {
+   
+    $tipo_material->delete();
+   return redirect('/Tipo_Materiales');
     }
         
+}
 }

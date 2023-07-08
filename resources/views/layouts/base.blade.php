@@ -36,7 +36,7 @@
   </div>
   
 </nav>
-<center><H2>SIAJ</H2><h5>Sistema de Inventario Aula del Juego</h5></center> 
+<center><H1>SIAJ</H1><h5>Sistema de Inventario Aula del Juego</h5></center> 
 <div class="container-fluid"><hr>
 
 
@@ -97,7 +97,7 @@
       <!-- Copyright -->
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2020 Copyright:
-    <a class="text-white" href="https://www.iudigital.edu.co/Paginas/default.aspx">IUDigital de Antioquia</a>
+    <a class="text-white" href="https://www.iudigital.edu.co/Paginas/default.aspx">IU Digital de Antioquia</a>
   </div>
   <!-- Copyright -->
 </footer>

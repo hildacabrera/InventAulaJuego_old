@@ -16,8 +16,8 @@
      <th>Cantidad</th>
       <th>Fecha de Ingreso</th>
        <th>Proveedor</th>
-      <th>nombre de Material</th>
-       <th>Nombre de Usuario</th>
+      <th>Nombre del Material</th>
+       <th>Nombre del Usuario</th>
         <th></th>
         
 </tr>

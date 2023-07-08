@@ -39,7 +39,7 @@
 </div>
 
  <div class="form-group col-6" >
- <label for="usuario_id">Nombre Usuario:</label>
+ <label for="usuario_id">Nombre del Usuario:</label>
 <select class="form-control" id="usuario_id" name="usuario_id">
     @foreach ($usuario as $usuario)
         <option value="{{$usuario->id}}">{{$usuario->nombre}}</option>
