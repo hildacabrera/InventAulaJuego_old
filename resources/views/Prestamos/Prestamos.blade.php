@@ -16,7 +16,7 @@
 
                             <div class="container col-12">
                                 <div id="dropdown">
-                                    <h5>Buscar Préstamos por Gestor</h5>
+                                    <h4>Buscar Préstamos por Gestor</h4>
                                     <select name="persona" class="form-control" onchange="this.form.submit()">
                                         <option value="">Selecciona un Gestor</option>
                                         @foreach ($superPantalla['ListaGestores'] as $usuario)
@@ -83,7 +83,7 @@
                     <div>
                         <div class="container col-12">
                             <div id="dropdown">
-                                <h5>Buscar por Material</h5>
+                                <h4>Buscar por Material</h4>
                                 <select name="material" class="form-control" onchange="this.form.submit()">
                                     <option value="">Selecciona material</option>
                                     @foreach ($superPantalla['ListaMaterial'] as $material)
