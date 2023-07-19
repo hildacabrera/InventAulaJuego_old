@@ -1,40 +1,56 @@
-@extends('layouts.base')
-@section ('content')
-
-  {{-- <form action="/Usuarios" method="POST"> --}}
-    <form action="/Usuarios/{{$usuario->id}}"method="POST">
-    @csrf
-    @method('put')
-    <div class="container mt-3">
-        <h5>Crear Usuario</h5>
-        <br>
-         
-          <div class="mb-3">
-            <label for="nombre">Nombre  Usuario:</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" value="{{$usuario->nombre}}">
-          </div>
-
-          <div class="mb-3">
-            <label for="email">E-mail:</label>
-            <input type="text" class="form-control" id="email" name="email" value="{{$usuario->email}}">
-          </div>
-
-           <div class="mb-3">
-            <label for="telefono">Teléfono:</label>
-            <input type="number" class="form-control" id="telefono" name="telefono" value="{{$usuario->telefono}}">
-          </div>
-
-           <div class="mb-3">
-            <label for="direccion">Dirección:</label>
-            <input type="text" class="form-control" id="direccion" name="direccion" value="{{$usuario->direccion}}">
-          </div>
-          
-     
-          <br>
-<a class="btn btn-primary" href="/Usuarios">Regresar</a>
-<button type= "submit" class="btn btn-primary ">Guardar</button>
-</form>
-
-
-@endsection
-
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Usuarios') }}
+        </h2>
+    </x-slot>
+    {{-- <form action="/Usuarios" method="POST"> --}}
+    <div class="py-3">
+        <div class="mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <form action="/Usuarios/{{ $user->id }}" method="POST">
+                        @csrf
+                        @method('put')
+                        <div class="container mt-3">
+                            <h5>Crear Usuario</h5>
+                            <br>
+                            <div class="mb-3">
+                                <label for="name">name:</label>
+                                <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email">E-mail:</label>
+                                <input type="text" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="password" name="password" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm-password">Confirmar password:</label>
+                                <input type="password" class="form-control" id="confirm-password" name="confirm-password" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="name">Rol:</label>
+                                <div>
+                                    <select name="roles" id="roles" class="form-select" required>
+                                        <option value="" disabled="disabled">Seleccionar el rol</option>
+                                        @foreach ($roles as $id=>$rol)
+                                            @if ($id == $user->id)
+                                                <option value="{{ $id }}" selected="selected">{{ $rol }}</option>
+                                            @else
+                                                <option value="{{ $id }}">{{ $rol }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>                              
+                                </div>
+                            </div>
+                            <a class="btn btn-primary" href="/Usuarios">Regresar</a>
+                            <button type="submit" class="btn btn-primary ">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

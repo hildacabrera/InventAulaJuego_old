@@ -6,13 +6,20 @@ use App\Models\Gestor;
 use App\Models\IngresoMaterial;
 use App\Models\Material;
 use App\Models\Prestamo;
-use App\Models\Usuario;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 
 class PrestamoController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-Prestamo|crear-Prestamo|editar-Prestamo|borrar-Prestamo',['only'=>['index']]);
+        $this->middleware('permission:crear-Prestamo',['only'=>['create','store']]);
+        $this->middleware('permission:editar-Prestamo',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar-Prestamo',['only'=>['destroy']]);
+       }
     /**
      * Display a listing of the resource.
      */
@@ -23,7 +30,7 @@ class PrestamoController extends Controller
             ->select('prestamo.id','material.nombre', 'material.descripcion', 'prestamo.cantidad', 'prestamo.fecha_devolucion')
             ->where('prestamo.id', '0')
             ->get(),
-            'ListaUsuarios' => Usuario::all(),
+            'ListaUsuarios' => User::all(),
             'ListaMaterial' => Material::all(),
             'ListaGestores' => Gestor::all(),
             'ListaMaterialesStock' => IngresoMaterial::join('material', 'material.id', '=', 'ingreso.material_id')
@@ -74,17 +81,17 @@ class PrestamoController extends Controller
             $prestamos->fecha_devolucion =$fecha0;
             $prestamos->descripcion = 'prestar';
             $prestamos->material_id = $prestamoCantidad -> material_id;
-            $prestamos->usuario_id = $usuarioId;
+            $prestamos->users_id = $usuarioId;
             $prestamos->gestor_id = $gestores[0]->id;
             $prestamos->save();
         }
         $superPantalla = [
             'ListaPrestamoPersonal' => Prestamo::join('material','material.id', '=', 'prestamo.material_id')
             ->select('prestamo.id','material.nombre', 'material.descripcion', 'prestamo.cantidad', 'prestamo.fecha_prestamo')
-            ->where('prestamo.usuario_id', $usuarioId)
+            ->where('prestamo.users_id', $usuarioId)
             ->where('prestamo.cantidad', '>', 0)
             ->get(),
-            'ListaUsuarios' => Usuario::all(),
+            'ListaUsuarios' => User::all(),
             'ListaMaterial' => Material::all(),
             'ListaMaterialesStock' => IngresoMaterial::join('material', 'material.id', '=', 'ingreso.material_id')
             ->select('ingreso.id','material.nombre', 'ingreso.fecha_ingreso', 'ingreso.cantidad')

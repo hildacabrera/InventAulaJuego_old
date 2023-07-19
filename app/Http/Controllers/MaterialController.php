@@ -8,8 +8,15 @@ use App\Models\IngresoMaterial;
 use App\Models\Material;
 use Illuminate\Support\Facades\Validator;
 class MaterialController extends Controller
-{
-    
+{   
+    function __construct()
+    {
+        $this->middleware('permission:ver-Material|crear-Material|editar-Material|borrar-Material',['only'=>['index']]);
+        $this->middleware('permission:crear-Material',['only'=>['create','store']]);
+        $this->middleware('permission:editar-Material',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar-Material',['only'=>['destroy']]);
+       }
+       
     public function index()
 {
     return view('Materiales.index', [

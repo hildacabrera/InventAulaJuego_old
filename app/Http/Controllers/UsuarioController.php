@@ -2,56 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
-use App\Models\IngresoMaterial;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Validator;
-//use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Arr;
 
 class UsuarioController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:ver-Usuario|crear-Usuario|editar-Usuario|borrar-Usuario', ['only' => ['Index']]);
+        $this->middleware('permission:crear-Usuario', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-Usuario', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-Usuario', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-       return view('Usuarios.Index',[
-            'usuario'=>Usuario::all(), 
-            'error' => session('error')
-            
-        ]);
-        
- }
+        $usuarios = user::all();
+        return view('Usuarios.index', compact('usuarios'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('Usuarios.create');
+        $roles = Role::pluck('name', 'name')->all();
+        return view('Usuarios.create', compact('roles'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {$validator = Validator::make($request->all(), [
-          'nombre' => 'required|max:50|','email' => 'required|max:50|', 'telefono' => 'required|min:7|max:10|','direccion' => 'required|max:50|'
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|email',
+            'password' => 'same:confirm-password',
+            'roles' => 'required'
         ]);
-    
-        if ($validator->fails()) {
-            return redirect('Usuarios/create')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
-        $usuario = new Usuario();
-        $usuario->nombre =$request->get('nombre');
-        $usuario->email =$request->get('email');
-        $usuario->telefono =$request->get('telefono');
-        $usuario->direccion =$request->get('direccion');
-        $usuario->save();
- 
-        return redirect('/Usuarios');
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+        $user = user::create($input);
+        $user->assignRole($request->input('roles'));
+        return redirect()->route('Usuarios.index');
     }
 
     /**
@@ -67,8 +68,10 @@ class UsuarioController extends Controller
      */
     public function edit(string $id)
     {
-        return view('Usuarios.edit',['usuario'=>Usuario::find($id)]);
-        
+        $user = user::find($id);
+        $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
+        return view('Usuarios.edit', compact('user', 'roles', 'userRole'));
     }
 
     /**
@@ -76,43 +79,41 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $usuario = Usuario::find($id);       
-        $usuario->nombre =$request->get('nombre');
-        $usuario->email =$request->get('email');
-        $usuario->telefono =$request->get('telefono');
-        $usuario->direccion =$request->get('direccion');
-        $usuario->save();
-
-        return redirect('/Usuarios');
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|email',
+            'password' => 'same:confirm-password',
+            'roles' => 'required'
+        ]);
+        $input = $request->all();
+        if (!empty($input['password'])) {
+            $input['password'] = Hash::make($input['password']);
+        } else {
+            $input['password'] = Arr::except($input, array('password'));
+        }
+        $user = user::find($id);
+        $user->update($input);
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
+        $user->assignRole($request->input('roles'));
+        return redirect()->route('Usuarios.index');
+    }
+    
+    public function confirmDelete(string $id)
+    {
+        return view(
+            'Usuarios.confirmDelete',
+            [
+                'usuarios' => User::find($id)
+            ]
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    
-    public function confirmDelete(string $id)
+    public function destroy(string $id)
     {
-     return view('Usuarios.confirmDelete',
-     ['usuario'=>Usuario::find($id)
-    ]);
-    }
-     public function destroy(string $id)
-    {
-       
-    $usuario = Usuario::find($id);
-    $ingreso = IngresoMaterial::select('*')
-        ->where('usuario_id', $id)
-        ->get();
-
-        if ($ingreso->count() > 0) {
-            
-            return redirect()->action([self::class, 'index'])->with('error', 'No puedes eliminar un usuario, tienes en ingresos items asociados en el sistema.');
-        } else {
-    
-    
-    $usuario->delete();
-    return redirect('/Usuarios');
+        User::find($id)->delete();
+        return Redirect()->route('Usuarios.index');
     }
 }
-}
-  

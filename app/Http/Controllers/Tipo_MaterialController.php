@@ -13,9 +13,16 @@ class Tipo_MaterialController extends Controller
 
 
 {
+
     private $id;
-    
     private $tipo_material;
+    function __construct()
+    {
+        $this->middleware('permission:ver-Tipo_Material|crear-Tipo_Material|editar-Tipo_Material|borrar-Tipo_Material',['only'=>['index']]);
+        $this->middleware('permission:crear-Tipo_Material',['only'=>['create','store']]);
+        $this->middleware('permission:editar-Tipo_Material',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar-Tipo_Material',['only'=>['destroy']]);
+       }
   
     public function index()
     

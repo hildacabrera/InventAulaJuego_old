@@ -11,7 +11,14 @@ use Illuminate\Support\Facades\Validator;
 //use App\Http\Controllers\Controller;
 
 class GestorController extends Controller
-{
+{function __construct()
+    {
+        $this->middleware('permission:ver-Gestor|crear-Gestor|editar-Gestor|borrar-Gestor',['only'=>['index']]);
+        $this->middleware('permission:crear-Gestor',['only'=>['create','store']]);
+        $this->middleware('permission:editar-Gestor',['only'=>['edit','update']]);
+        $this->middleware('permission:borrar-Gestor',['only'=>['destroy']]);
+    }
+    
     /**
      * Display a listing of the resource.
      */
