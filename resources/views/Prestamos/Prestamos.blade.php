@@ -7,95 +7,27 @@
     <div class="py-3">
         <div class="mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <form id="formPrestamo"="{{ route('consultarPrestamos') }}" method="POST">
+                    @csrf
                 <div class="p-6 text-gray-900">
+                    <br>
+                    <br>
                     <div>
-                        <form id="formPrestamo"="{{ route('consultarPrestamos') }}" method="POST">
-                            @csrf
+
                             <div class="container col-12">
                                 <div id="dropdown">
                                     <h5>Buscar Préstamos por Gestor</h5>
                                     <select name="persona" class="form-control" onchange="this.form.submit()">
                                         <option value="">Selecciona un Gestor</option>
-                                        @foreach ($superPantalla['ListaUsuarios'] as $usuario)
+                                        @foreach ($superPantalla['ListaGestores'] as $usuario)
                                             <option value="{{ $usuario->id }}"
-                                                @if ($usuario->id == $superPantalla['ValorUsuario']) selected @endif>
-                                                {{ $usuario->name }}</option>
+                                                @if ($usuario->id == $superPantalla['ValorGestor']) selected @endif>
+                                                {{ $usuario->nombre }}</option>
                                         @endforeach
                                     </select>
                                     <br>
                                 </div>
                             </div>
-                        </form>
-                        <div id="grillaPrestamo">
-                            <div class="table-responsive" style="width: 95%; margin: 0 auto">
-                                <table class="table table-striped" style="text-align: center">
-                                    <thead>
-                                        <tr>
-                                            <td>
-                                                <b>Material</b>
-                                            </td>
-                                            <td>
-                                                <b>Descripción</b>
-                                            </td>
-                                            <td>
-                                                <b>Cantidad</b>
-                                            </td>
-                                            <td>
-                                                <b>Fecha Préstamo</b>
-                                            </td>
-                                            <td>
-                                                <b>Acción</b>
-                                            </td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if (count($superPantalla['ListaPrestamoPersonal']) > 0)
-                                            @foreach ($superPantalla['ListaPrestamoPersonal'] as $item)
-                                                <tr>
-                                                    <td>
-                                                        {{ $item->nombre }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->descripcion }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->cantidad }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $item->fecha_prestamo }}
-                                                    </td>
-
-                                                    <td>
-                                                        <a onclick="submitFormDevolver(event, {{ $item->id }})"
-                                                            class="btn btn-warning"><small>Devolver</small></a>
-                                                    </td>
-                                            @endforeach
-                                        @endif
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <div>
-                        <form id="formPrestamo"="{{ route('consultarPrestamos') }}" method="POST">
-                            @csrf
-                            <div class="container col-12">
-                                <div id="dropdown">
-                                    <h5>Buscar Préstamos por Usuario</h5>
-                                    <select name="persona" class="form-control" onchange="this.form.submit()">
-                                        <option value="">Selecciona un usuario</option>
-                                        @foreach ($superPantalla['ListaUsuarios'] as $usuario)
-                                            <option value="{{ $usuario->id }}"
-                                                @if ($usuario->id == $superPantalla['ValorUsuario']) selected @endif>
-                                                {{ $usuario->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    <br>
-                                </div>
-                            </div>
-                        </form>
                         <div id="grillaPrestamo">
                             <div class="table-responsive" style="width: 95%; margin: 0 auto">
                                 <table class="table table-striped" style="text-align: center">
@@ -234,6 +166,7 @@
                         }
                     </script>
                 </div>
+            </form>
             </div>
         </div>
     </div>

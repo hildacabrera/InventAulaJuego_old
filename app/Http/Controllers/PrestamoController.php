@@ -74,25 +74,26 @@ class PrestamoController extends Controller
             $prestamoCantidad->cantidad = $prestamoCantidad->cantidad - 1;
             $prestamoCantidad->save();
 
-            $gestores = Gestor::all();
+            $gestores = User::all();
             $prestamos = new Prestamo ();
             $prestamos->cantidad = 1;
             $prestamos->fecha_prestamo =$fechaActual;
             $prestamos->fecha_devolucion =$fecha0;
             $prestamos->descripcion = 'prestar';
             $prestamos->material_id = $prestamoCantidad -> material_id;
-            $prestamos->users_id = $usuarioId;
-            $prestamos->gestor_id = $gestores[0]->id;
+            $prestamos->users_id = $gestores[0]->id;
+            $prestamos->gestor_id = $usuarioId;
             $prestamos->save();
         }
         $superPantalla = [
             'ListaPrestamoPersonal' => Prestamo::join('material','material.id', '=', 'prestamo.material_id')
             ->select('prestamo.id','material.nombre', 'material.descripcion', 'prestamo.cantidad', 'prestamo.fecha_prestamo')
-            ->where('prestamo.users_id', $usuarioId)
+            ->where('prestamo.gestor_id', $usuarioId)
             ->where('prestamo.cantidad', '>', 0)
             ->get(),
             'ListaUsuarios' => User::all(),
             'ListaMaterial' => Material::all(),
+            'ListaGestores' => Gestor::all(),
             'ListaMaterialesStock' => IngresoMaterial::join('material', 'material.id', '=', 'ingreso.material_id')
             ->select('ingreso.id','material.nombre', 'ingreso.fecha_ingreso', 'ingreso.cantidad')
             ->where('material.id', $materialId)
@@ -100,6 +101,7 @@ class PrestamoController extends Controller
             ->get(),
             'ValorUsuario' => $usuarioId,
             'ValorMaterial' => $materialId,
+            'ValorGestor' => $usuarioId
                 ];
 
                 return view('Prestamos.Prestamos',[
