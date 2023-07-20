@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::before(function($user,$ability){
-            return $user->email== 'cclaudiaximena@gmail.com' ?? null;
+            return $user->email== 'admin@gmail.com' ?? null;
         });
     }
 }
